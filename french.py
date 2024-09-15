@@ -4,6 +4,7 @@ import time
 import re
 
 lst_sound = {
+    "m" : "m",
     "d" : "d",                
     "m" : "m",          
     "t" : "t",          
@@ -91,6 +92,9 @@ lst_sound = {
     "ï" : "i"                   
 }
 
+sound_keys_lst = list(lst_sound.keys())
+sound_values_lst = list(lst_sound.values())
+
 voy_l = ["a", "e", "i", "o", "u"]
 voy_l2 = ["a", "e", "i", "o", "u", "à", "é", "è", "ô", "ê", "y"]
 spe_csn = ["r", "t", "p", "s", "n", "c", "f", "m"]
@@ -169,7 +173,7 @@ while t < len(all_txt):
                             t += 1
                     else:
                         no_stop = False
-                if t + 2 < len(all_txt) and all_txt[t + 1] in spe_csn and all_txt[t] in ["o", "e"]:
+                if t + 2 < len(all_txt) and all_txt[t]:
                     if all_txt[t + 1] == all_txt[t + 2]:
                         cur_lettr += all_txt[t + 1] + all_txt[t + 1]
                         t += 3
@@ -179,7 +183,10 @@ while t < len(all_txt):
                     elif all_txt[t + 1] in ["t", "s", "c", "z", "r"] and all_txt[t + 2] == " " and cur_lettr == "e":
                         t += 1
                         cur_lettr += all_txt[t]
-                    elif all_txt[t + 1] == "n" and all_txt[t + 2] not in voy_l2:   
+                    elif cur_lettr == "e" and all_txt[t + 1] == "s" and all_txt[t + 2] not in voy_l2:
+                        cur_lettr = "es"
+                        t += 1
+                    elif all_txt[t + 1] == "n" and all_txt[t + 2] not in voy_l2:  
                         t += 2
                         cur_lettr += "n"
                     elif all_txt[t] == "o" and all_txt[t + 1] == "r":
@@ -261,7 +268,7 @@ while t < len(all_txt):
                 t += 1
         time.sleep(.2)
         phonetic_rtn += cur_lettr + "-"
-        print(cur_lettr)
+        print(sound_values_lst[sound_keys_lst.index(cur_lettr)])
     elif t - 1 > 0:
         t += 1
         if all_txt[t - 2] == "n":
