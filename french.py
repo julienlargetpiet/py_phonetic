@@ -89,7 +89,8 @@ lst_sound = {
     "ong" : "ŋ",               
     "ung" : "ŋ",                  
     "h" : "'",                   
-    "ï" : "i"                   
+    "ï" : "i",
+    "er" : "ɛ̃"
 }
 
 sound_keys_lst = list(lst_sound.keys())
@@ -183,6 +184,7 @@ while t < len(all_txt):
                     elif all_txt[t + 1] in ["t", "s", "c", "z", "r"] and all_txt[t + 2] == " " and cur_lettr == "e":
                         t += 1
                         cur_lettr += all_txt[t]
+                        t += 1
                     elif cur_lettr == "e" and all_txt[t + 1] == "s" and all_txt[t + 2] not in voy_l2:
                         cur_lettr = "es"
                         t += 1
@@ -201,6 +203,7 @@ while t < len(all_txt):
                     if all_txt[t + 1] in ["t", "s", "c", "z", "r"] and cur_lettr == "e":
                         t += 1
                         cur_lettr += all_txt[t]
+                        t += 1
                     elif all_txt[t + 1] == "n":   
                         cur_lettr += all_txt[t + 1]
                         t += 2
