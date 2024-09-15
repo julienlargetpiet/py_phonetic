@@ -4,7 +4,7 @@ Set of python programms allowing to traduct any text in the given language to th
 
 ## Development
 
-For now only the following languages are available:
+For now, only the following languages are available:
 
 - french
 
