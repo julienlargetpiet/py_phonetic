@@ -90,7 +90,9 @@ lst_sound = {
     "ung" : "ŋ",                  
     "h" : "'",                   
     "ï" : "i",
-    "er" : "ɛ̃"
+    "er" : "ɛ̃",
+    "uie" : "y-i",
+    "ui" : "y-i"
 }
 
 sound_keys_lst = list(lst_sound.keys())
@@ -151,6 +153,7 @@ all_txt = "spc".join(list(all_txt)).split("spc")
 t = 0
 cur_lettr = ""
 phonetic_rtn = ""
+phonetic_rtn2 = ""
 
 while t < len(all_txt):
     if all_txt[t] not in [" ", ",", "'"]:
@@ -271,21 +274,24 @@ while t < len(all_txt):
                 t += 1
         time.sleep(.2)
         phonetic_rtn += cur_lettr + "-"
-        print(sound_values_lst[sound_keys_lst.index(cur_lettr)])
+        phonetic_rtn2 += sound_values_lst[sound_keys_lst.index(cur_lettr)] + "-"
     elif t - 1 > 0:
         t += 1
         if all_txt[t - 2] == "n":
             if t < len(all_txt):
                 if all_txt[t] in voy_l2:
                     phonetic_rtn += "n-"
-                    print("n")
-    else:
+                    phonetic_rtn2 += "n-"
+    elif all_txt[t] != "'":
         phonetic_rtn += " "
-        print(" ")
+        phonetic_rtn2 += " "
         time.sleep(0.2)
+        t += 1
+    else:
         t += 1
 
 print(phonetic_rtn[0:(len(phonetic_rtn) - 1)])
+print(phonetic_rtn2[0:(len(phonetic_rtn2) - 1)])
 
 
 
