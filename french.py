@@ -143,7 +143,7 @@ except_dct = {
 keys_lst = list(except_dct.keys())
 values_lst = list(except_dct.values())
 
-all_txt = str(input("Text? "))
+all_txt = str(input("Text "))
 
 for i in range(0, len(except_dct), 1):
     all_txt = re.sub(keys_lst[i], values_lst[i], all_txt)
@@ -248,13 +248,21 @@ while t < len(all_txt):
                     t += 1
                 elif cur_lettr == "t" and all_txt[t] == "i" and all_txt[t + 1] in voy_l:
                     cur_lettr = "s"
-                elif cur_lettr == "c" and all_txt[t] == "e" and all_txt[t + 1] == "p":
-                    cur_lettr = "ep"
                 elif cur_lettr == "l" and all_txt[t] == "l":
                     cur_lettr = "ll"
                     t += 2
                 elif all_txt[t] == "e" and all_txt[t + 1] == " ":
                     t += 1
+                elif all_txt[t] == "e":
+                    if t + 2 < len(all_txt):
+                        if all_txt[t + 2] in [".", ","]:
+                            t += 3
+                            time.sleep(.5)
+                        elif all_txt[t + 2] in [" ", "'"]:
+                            t += 3
+                            time.sleep(.5)
+                    elif all_txt[t + 1] == "s":
+                        t += 2
             elif t < len(all_txt):
                 if all_txt[t] == "e":
                     t += 1
@@ -290,8 +298,8 @@ while t < len(all_txt):
     else:
         t += 1
 
-print(phonetic_rtn[0:(len(phonetic_rtn) - 1)])
-print(phonetic_rtn2[0:(len(phonetic_rtn2) - 1)])
+print("French phonetic", phonetic_rtn[0:(len(phonetic_rtn) - 1)])
+print("International Phonetic Alphabet", phonetic_rtn2[0:(len(phonetic_rtn2) - 1)])
 
 
 
